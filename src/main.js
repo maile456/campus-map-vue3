@@ -1,9 +1,13 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import router from './router'
 
 // 引入 ECharts
 import * as echarts from 'echarts'
 import 'echarts-wordcloud'
+
+// 引入全局样式
+import './styles/animations.css'
 
 // 动态加载百度地图 API
 function loadBaiduMap() {
@@ -40,6 +44,7 @@ loadBaiduMap()
     .then(() => {
         const app = createApp(App)
         app.config.globalProperties.$echarts = echarts
+        app.use(router)
         app.mount('#app')
     })
     .catch((error) => {
